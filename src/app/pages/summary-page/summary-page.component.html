@@ -1,0 +1,40 @@
+<div class="card" style="width: 65rem; text-align: center; margin: auto;">
+    <div class="card-body">
+      <h5 class="card-title">Welcome</h5>
+      <p class="card-text">We are very glad to see you on our site!</p>
+      <a href="#" class="btn btn-primary" routerLink="/navigator" [queryParams]="{'tab': 0}">See transactions</a>
+      <div style="padding-top: 10px;">You have {{transactions.data.length}} transactions</div>
+    </div>
+</div>
+<div class="container" style="display: flex; justify-content: space-around;">
+    <div class="card" style="width: 30rem;">
+        <div class="card-body">
+            <h5 class="card-title">{{ transactions.data | countTransaction: 'income' }}</h5>
+            <p class="card-text">Income</p>
+            <a href="#" class="btn btn-primary" routerLink="navigator" [queryParams]="{'tab': 0}">See all</a>
+        </div>
+    </div>
+    <div class="card" style="width: 30rem;">
+        <div class="card-body">
+            <h5 class="card-title">{{ transactions.data | countTransaction: 'investment' }}</h5>
+            <p class="card-text">Investments</p>
+            <a href="#" class="btn btn-primary" routerLink="navigator" [queryParams]="{'tab': 3}">See all</a>
+        </div>
+    </div>
+</div>
+<div class="container" style="display: flex; justify-content: space-around;">
+    <div class="card" style="width: 30rem;">
+        <div class="card-body">
+            <h5 class="card-title">{{ transactions.data | countTransaction: 'outcome' }}</h5>
+            <p class="card-text">Outcome</p>
+            <a href="#" class="btn btn-primary" routerLink="navigator" [queryParams]="{'tab': 1}">See all</a>
+        </div>
+    </div>
+    <div class="card" style="width: 30rem;">
+        <div class="card-body">
+            <h5 class="card-title">{{ transactions.data | countTransaction: 'loan' }}</h5>
+            <p class="card-text">Loans</p>
+            <a href="#" class="btn btn-primary" routerLink="navigator" [queryParams]="{'tab': 2}">See all</a>
+        </div>
+    </div>
+</div>

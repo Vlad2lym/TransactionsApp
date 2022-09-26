@@ -1,0 +1,31 @@
+<ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a class="nav-link" aria-current="page" routerLink="navigator" (click)="goToTab0()">Income</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="navigator" (click)="goToTab1()">Outcome</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="navigator" (click)="goToTab2()">Loans</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="navigator" (click)="goToTab3()">Investments</a>
+    </li>
+</ul>
+
+<button type="button" class="btn btn-light" routerLink="">Home</button>
+
+<table class="table" style="margin: auto; width: 1000px; text-align: center;">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Acount</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let trans of transactions.data | filterTransaction: typeFilter[tab]">
+        <td>{{ trans[0] }}</td>
+        <td>{{ trans[1] }}</td>
+      </tr>
+    </tbody>
+  </table>
