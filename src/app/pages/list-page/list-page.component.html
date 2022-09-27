@@ -1,15 +1,15 @@
 <ul class="nav nav-tabs">
     <li class="nav-item">
-      <a class="nav-link" aria-current="page" routerLink="navigator" (click)="goToTab0()">Income</a>
+      <a class="nav-link" [ngClass]="{'active': !+tab}" aria-current="page" routerLink="navigator" (click)="goToTab0()">Income</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" routerLink="navigator" (click)="goToTab1()">Outcome</a>
+      <a class="nav-link" [ngClass]="{'active': tab == 1}" routerLink="navigator" (click)="goToTab1()">Outcome</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" routerLink="navigator" (click)="goToTab2()">Loans</a>
+      <a class="nav-link" [ngClass]="{'active': tab == 2}" routerLink="navigator" (click)="goToTab2()">Loans</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" routerLink="navigator" (click)="goToTab3()">Investments</a>
+      <a class="nav-link" [ngClass]="{'active': tab == 3}" routerLink="navigator" (click)="goToTab3()">Investments</a>
     </li>
 </ul>
 
