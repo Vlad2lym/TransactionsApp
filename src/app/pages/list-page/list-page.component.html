@@ -1,15 +1,15 @@
 <ul class="nav nav-tabs">
     <li class="nav-item">
-      <a class="nav-link" [ngClass]="{'active': !+tab}" aria-current="page" routerLink="navigator" (click)="goToTab0()">Income</a>
+      <a class="nav-link" [ngClass]="{'active': !+tab}" aria-current="page" (click)="tab = 0" routerLink="/navigator" [queryParams]="{'tab': 0}" >Income</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" [ngClass]="{'active': tab == 1}" routerLink="navigator" (click)="goToTab1()">Outcome</a>
+      <a class="nav-link" [ngClass]="{'active': tab == 1}" (click)="tab = 1" routerLink="/navigator" [queryParams]="{'tab': 1}">Outcome</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" [ngClass]="{'active': tab == 2}" routerLink="navigator" (click)="goToTab2()">Loans</a>
+      <a class="nav-link" [ngClass]="{'active': tab == 2}" (click)="tab = 2" routerLink="/navigator" [queryParams]="{'tab': 2}">Loans</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" [ngClass]="{'active': tab == 3}" routerLink="navigator" (click)="goToTab3()">Investments</a>
+      <a class="nav-link" [ngClass]="{'active': tab == 3}" (click)="tab = 3" routerLink="/navigator" [queryParams]="{'tab': 3}">Investments</a>
     </li>
 </ul>
 
@@ -23,9 +23,9 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let trans of transactions.data | filterTransaction: typeFilter[tab]">
-        <td>{{ trans[0] }}</td>
-        <td>{{ trans[1] }}</td>
+      <tr *ngFor="let trans of transactionTypeFilter[tab]">
+        <td>{{ getFullName(trans.name.first, trans.name.last) }}</td>
+        <td>{{ counter(trans.address) }}</td>
       </tr>
     </tbody>
   </table>

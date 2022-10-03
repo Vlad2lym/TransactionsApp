@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { Router } from '@angular/router';
 import { transactions } from 'src/app/data/transactions';
+import { ITransaction } from 'src/app/models/transaction';
 
 @Component({
   selector: 'app-list-page',
@@ -10,37 +10,28 @@ import { transactions } from 'src/app/data/transactions';
   styleUrls: ['./list-page.component.scss']
 })
 export class ListPageComponent {
-  tab: any
+  tab: any 
   transactions = JSON.parse(transactions)
-  typeFilter = ['income', 'outcome', 'loan', 'investment']
 
+  incomeCollection = this.transactions.data.filter((item: ITransaction) => item.type === 'income')
+  outcomeCollection = this.transactions.data.filter((item: ITransaction) => item.type === 'outcome')
+  loanCollection = this.transactions.data.filter((item: ITransaction) => item.type === 'loan')
+  investmentCollection = this.transactions.data.filter((item: ITransaction) => item.type === 'investment')
+  
+  transactionTypeFilter = [this.incomeCollection, this.outcomeCollection, this.loanCollection, this.investmentCollection]
 
   private querySubscription: Subscription
-
-  constructor(private route: ActivatedRoute, private router: Router) {
-    this.router.routeReuseStrategy.shouldReuseRoute = function () {
-      return false;
-    };
-    
+  constructor(private route: ActivatedRoute) {
     this.querySubscription = route.queryParams.subscribe((queryParam: any) => {
       this.tab = queryParam['tab']
     })
-   }
-
-  goToTab0 () {
-    this.router.navigate(['navigator'], {queryParams: {'tab': 0}})
   }
 
-  goToTab1 () {
-    this.router.navigate(['navigator'], {queryParams: {'tab': 1}})
+  counter(address: string): number {
+    return Math.floor(address.length*(1 + Math.random()*99))
   }
 
-  goToTab2 () {
-    this.router.navigate(['navigator'], {queryParams: {'tab': 2}})
+  getFullName(firstName: string, lastName: string): string {
+    return `${firstName} ${lastName}`
   }
-
-  goToTab3 () {
-    this.router.navigate(['navigator'], {queryParams: {'tab': 3}})
-  }
-
 }
